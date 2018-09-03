@@ -26,7 +26,7 @@ RUN apk add --no-cache --quiet \
     && chmod -R 777 /var/lib/neo4j \
     && ln -s /data /var/lib/neo4j/data \
     && mkdir /plugins \
-    && curl -o /plugins/local-package/apoc-3.4.0.2-all.jar https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/3.4.0.2/apoc-3.4.0.2-all.jar \
+    && curl -o /plugins/apoc-3.4.0.2-all.jar https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/3.4.0.2/apoc-3.4.0.2-all.jar \
     && apk del curl
 
 ENV PATH /var/lib/neo4j/bin:$PATH
@@ -43,3 +43,5 @@ EXPOSE 7474 7473 7687
 
 ENTRYPOINT ["/sbin/tini", "-g", "--", "/docker-entrypoint.sh"]
 CMD ["neo4j"]
+
+# docker build -t neo4j-alpine-3.4.6 -f Dockerfile .
